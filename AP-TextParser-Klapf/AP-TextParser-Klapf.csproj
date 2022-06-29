@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="Models\WordData.cs" />
     <Compile Include="Services\FileHandlerService.cs" />
+    <Compile Include="ValueConverters\FileNameConverter.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
