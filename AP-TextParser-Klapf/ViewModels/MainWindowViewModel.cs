@@ -1,31 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Diagnostics;
+﻿using AP_TextParser_Klapf.Models;
 using AP_TextParser_Klapf.Services;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using AP_TextParser_Klapf.Models;
+using System.ComponentModel;
 using System.Threading;
-
+using System.Threading.Tasks;
 
 namespace AP_TextParser_Klapf.Viewmodels
 {
-    class MainWindowViewModel : INotifyPropertyChanged
+    internal class MainWindowViewModel : INotifyPropertyChanged
     {
         private string _filePath;
         private string _statusText;
         private int _progressBarValue;
         private bool _isProcessing;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public DelegateCommand ProcessCommand { get; set; }
         public DelegateCommand SelectFileCommand { get; set; }
         public DelegateCommand CancelProcessingCommand { get; set; }
-        private FileHandlerService _fileHandlerService;
+        private readonly FileHandlerService _fileHandlerService;
         private CancellationTokenSource src;
         public ObservableCollection<WordData> TableData { get; set; } = new ObservableCollection<WordData>();
-
 
         public string StatusText
         {
@@ -66,7 +64,6 @@ namespace AP_TextParser_Klapf.Viewmodels
             }
         }
 
-
         public string FilePath
         {
             get => _filePath;
@@ -90,7 +87,7 @@ namespace AP_TextParser_Klapf.Viewmodels
             this.ProcessCommand = new DelegateCommand(
                 (o) =>
                 {
-                    if (String.IsNullOrEmpty(FilePath) | IsProcessing)
+                    if (String.IsNullOrEmpty(FilePath) || IsProcessing)
                     {
                         return false;
                     }
@@ -112,7 +109,7 @@ namespace AP_TextParser_Klapf.Viewmodels
         }
 
         /// <summary>
-        /// Starts to process the file that was choosen in the select file dialog. 
+        /// Starts to process the file that was choosen in the select file dialog.
         /// The result of the processing is stored in the table TableData.
         /// </summary>
         /// <returns></returns>
@@ -137,7 +134,6 @@ namespace AP_TextParser_Klapf.Viewmodels
                 });
 
                 ct.ThrowIfCancellationRequested();
-
 
                 ProgressBarValue = 50;
 
@@ -169,6 +165,7 @@ namespace AP_TextParser_Klapf.Viewmodels
                     Console.WriteLine("Exception while Processing: {0}", ex.Source);
             }
         }
+
         /// <summary>
         /// Resets the table, the processing state and the progressbar
         /// </summary>
@@ -195,8 +192,5 @@ namespace AP_TextParser_Klapf.Viewmodels
                 FilePath = openFileDialog.FileName;
             }
         }
-
     }
-
-
 }

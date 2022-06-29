@@ -15,7 +15,6 @@
             <Setter Property="Background" Value="#ecf0f1" />
             <Setter Property="FontSize" Value="12" />
             <Setter Property="TextAlignment" Value="Center" />
-            
         </Style>
         <Style TargetType="Button">
             <Style.Resources>
@@ -30,23 +29,20 @@
             <Setter Property="FontFamily" Value="Seriv" />
         </Style>
         <vc:FileNameConverter x:Key ="filename" />
-        
     </Window.Resources>
 
     <Window.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Window.DataContext>
-    <Border Background="#2980b9" >
+    <Border Background="#2980b9">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300" />
-                <ColumnDefinition  />
-
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
+                <RowDefinition Height="70" />
                 <RowDefinition />
-
             </Grid.RowDefinitions>
 
             <TextBlock Text="Text Parser"
@@ -56,7 +52,7 @@
                        FontSize="23"
                        Grid.Column="0"
                        Grid.Row="0"
-                       Margin="20,0,0,0"/>
+                       Margin="20,0,0,0" />
 
             <Border Grid.Row="1" Grid.Column="0" Margin="10" Height="auto" VerticalAlignment="Top" Background="#2c3e50" CornerRadius="10">
                 <Grid>
@@ -65,32 +61,30 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <TextBox Margin="10,10,10,10" Text="{Binding FilePath, Converter={StaticResource filename}}"  IsReadOnly="True" Grid.Row="0" Grid.Column="0" />
                     <Button  Content="Select File"  Command="{Binding SelectFileCommand}" Grid.Row="0" Grid.Column="1" />
 
-                    <Button  Content="Process File"  Command="{Binding ProcessCommand}" Grid.Row="1" Grid.Column="1"/>
+                    <Button  Content="Process File"  Command="{Binding ProcessCommand}" Grid.Row="1" Grid.Column="1" />
                     <Button  Content="Cancel" Command="{Binding CancelProcessingCommand}" Grid.Row="1" Grid.Column="0" />
                     <ProgressBar Margin="10,10,10,10" MinHeight="20" Visibility="Visible" Value="{Binding ProgressBarValue, Mode=OneWay}"  Minimum="0" Maximum="100" Grid.Row="2" Grid.Column="0"
-                                 Grid.ColumnSpan="2"/>
+                                 Grid.ColumnSpan="2" />
                     <TextBlock Margin="0,30,00,10" TextWrapping="Wrap"  FontSize="15" Foreground="Beige" Text="{Binding StatusText}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
-                               Visibility="Collapsed"/>
-
+                               Visibility="Collapsed" />
                 </Grid>
             </Border>
 
             <Border Grid.Row="1" Grid.Column="1" Margin="10" Background="#2c3e50" CornerRadius="10">
-                <DataGrid Margin="10" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding TableData}" 
-                  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True" Background="#34495e"  >
+                <DataGrid Margin="10" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding TableData}"
+                  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True" Background="#34495e">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Word"  Width="*"  Binding="{Binding Word}"/>
-                        <DataGridTextColumn Header="Occurrence" Width="*" Binding="{Binding WordCount}"/>
+                        <DataGridTextColumn Header="Word"  Width="*"  Binding="{Binding Word}" />
+                        <DataGridTextColumn Header="Occurrence" Width="*" Binding="{Binding WordCount}" />
                     </DataGrid.Columns>
-
                 </DataGrid>
             </Border>
         </Grid>

@@ -7,10 +7,10 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 [assembly: InternalsVisibleTo("AP-TextParser-Klapf-Tests")]
+
 namespace AP_TextParser_Klapf.Services
 {
-
-    class FileHandlerService
+    internal class FileHandlerService
     {
         /// <summary>
         /// Extracts all words from a string by removing all control and special characters.
@@ -32,7 +32,7 @@ namespace AP_TextParser_Klapf.Services
         /// </summary>
         /// <param name="collection">String array to process</param>
         /// <returns>A list of worddata each containing one word and its occurrence in the parsed text</returns>
-        List<WordData> GetWordsWithTheirOccurences(string[] collection)
+        private List<WordData> GetWordsWithTheirOccurences(string[] collection)
         {
             if (collection == null) { return null; }
 
@@ -51,7 +51,7 @@ namespace AP_TextParser_Klapf.Services
         /// </summary>
         /// <param name="path"></param>
         /// <returns>Content of the text file as string</returns>
-        string GetTextFileAsString(string path)
+        private string GetTextFileAsString(string path)
         {
             if (String.IsNullOrEmpty(path))
             {
@@ -81,7 +81,6 @@ namespace AP_TextParser_Klapf.Services
             }
             return null;
         }
-
 
         /// <summary>
         /// Processes a given file.
@@ -116,11 +115,11 @@ namespace AP_TextParser_Klapf.Services
         }
 
         /// <summary>
-        /// Simple check if a given file is a binary. The first 8000 bytes of the file are checked, if one contains a nulChar it can be assumed that it is a binary. 
+        /// Simple check if a given file is a binary. The first 8000 bytes of the file are checked, if one contains a nulChar it can be assumed that it is a binary.
         /// </summary>
         /// <param name="path">Full path to the file</param>
         /// <returns></returns>
-        bool IsBinary(string path)
+        private bool IsBinary(string path)
         {
             const int charsAmountToCheck = 8000;
             const char nulChar = '\0';
